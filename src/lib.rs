@@ -9,12 +9,12 @@ pub type CoreSender = Sender<CoreMessage>;
 
 pub trait Plugin: Any{ //} + Send + Sync{
 
-    fn on_load(&mut self, iface:&NetworkInterface);
+    fn on_load(&mut self, iface:&NetworkInterface, tx:CoreSender);
     fn on_unload(&mut self);
 
     fn get_name(&self) -> &str;
     fn get_id(&self) -> u8;
 
-    fn process(&self, tx:CoreSender, data:&'_ EthernetPacket);
+    fn process(&self, data:&'_ EthernetPacket);
 }
 
