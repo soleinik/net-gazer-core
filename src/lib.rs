@@ -10,6 +10,6 @@ pub type CoreTxSender = Sender<CoreMessage>;
 pub trait Plugin<'p>: Any + Send + Sync {
     fn get_description(&self) -> String;
     fn get_id(&self) -> u8;
-    fn process(&'_ mut self, tx:&'_ CoreTxSender, pkt:&'_ EthernetPacket);
+    fn process(&mut self, tx:&'_ CoreTxSender, pkt:&'_ EthernetPacket);
 }
 
