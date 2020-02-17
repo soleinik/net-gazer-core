@@ -8,8 +8,8 @@ pub type CoreMessage = (u8, Vec<u8>);
 pub type CoreTxSender = Sender<CoreMessage>;
 
 pub trait Plugin<'p>: Any + Send + Sync {
-    fn get_description() -> String;
-    fn get_id() -> u8;
-    fn process(tx:&'p CoreTxSender, pkt:&'p EthernetPacket);
+    fn get_description(&self) -> String;
+    fn get_id(&self) -> u8;
+    fn process(&'_ mut self, tx:&'_ CoreTxSender, pkt:&'_ EthernetPacket);
 }
 
