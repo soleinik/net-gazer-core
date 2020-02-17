@@ -1,15 +1,18 @@
 
 use std::any::Any;
 use std::sync::mpsc::Sender;
-use pnet::packet::ethernet::EthernetPacket;
-
 
 pub type CoreMessage = (u8, Vec<u8>);
-pub type CoreTxSender = Sender<CoreMessage>;
+pub type CoreSender = Sender<CoreMessage>;
 
-pub trait Plugin<'p>: Any + Send + Sync{
-    fn get_description(&self) -> String;
+pub trait Plugin<'p, T>: Any + Send + Sync{
+    
+    fn on_load(&self);
+    fn on_unload(&self);
+
+    fn get_name(&self) -> &'_ str;
     fn get_id(&self) -> u8;
-    fn process(&mut self, tx:&'_ CoreTxSender, pkt:&'_ EthernetPacket);
+
+    fn process(&mut self, tx:&'_ CoreSender, data:&'_ T);
 }
 
