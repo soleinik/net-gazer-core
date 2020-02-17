@@ -7,7 +7,7 @@ use pnet::datalink::NetworkInterface;
 pub type CoreMessage = (u8, Vec<u8>);
 pub type CoreSender = Sender<CoreMessage>;
 
-pub trait Plugin: Any + Send + Sync{
+pub trait Plugin: Any{ //} + Send + Sync{
 
     fn on_load(&mut self, iface:&NetworkInterface);
     fn on_unload(&mut self);
