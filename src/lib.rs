@@ -9,8 +9,8 @@ pub type CoreSender = Sender<CoreMessage>;
 
 pub trait Plugin: Any + Send + Sync{
 
-    fn on_load(&self, iface:&NetworkInterface);
-    fn on_unload(&self);
+    fn on_load(&mut self, iface:&NetworkInterface);
+    fn on_unload(&mut self);
 
     fn get_name(&self) -> &str;
     fn get_id(&self) -> u8;
