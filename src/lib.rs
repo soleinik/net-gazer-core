@@ -19,3 +19,11 @@ pub trait Plugin: Any{ //} + Send + Sync{
     fn process(&self, data:&'_ EthernetPacket);
 }
 
+
+///plugin id is also message id that plugin produces
+pub const PLUGIN_ID_DEMO:u8 = 0;
+pub const PLUGIN_ID_TRACEROUTE:u8 = 1;
+
+
+/// reserved for error messages
+pub const PLUGIN_ID_ERROR_MSG:u8 = std::u8::MAX;
