@@ -1,11 +1,11 @@
 
 use std::any::Any;
-use std::sync::mpsc::{Sender, Receiver};
+use std::sync::mpsc::{SyncSender, Receiver};
 use pnet::packet::ethernet::EthernetPacket;
 use pnet::datalink::NetworkInterface;
 
 pub type CoreMessage = (u8, Vec<u8>);
-pub type CoreSender = Sender<CoreMessage>;
+pub type CoreSender = SyncSender<CoreMessage>;
 pub type CoreReceiver = Receiver<CoreMessage>;
 
 pub trait Plugin: Any{ //} + Send + Sync{
