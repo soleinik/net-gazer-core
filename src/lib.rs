@@ -16,7 +16,7 @@ pub trait Plugin: Any{ //} + Send + Sync{
     fn get_name(&self) -> &str;
     fn get_id(&self) -> u8;
 
-    fn process(&self, data:&'_ EthernetPacket);
+    fn process(&mut self, data:&'_ EthernetPacket);
 }
 
 
