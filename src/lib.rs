@@ -23,7 +23,7 @@ pub trait Plugin: Any{ //} + Send + Sync{
 ///plugin id is also message id that plugin produces
 pub const PLUGIN_ID_DEMO:u8 = 0;
 pub const PLUGIN_ID_TRACEROUTE:u8 = 1;
-pub const PLUGIN_ID_ALLETHER:u8 = 2;
+pub const PLUGIN_ID_ALLIPV4:u8 = 2;
 
 
 /// reserved for error messages
