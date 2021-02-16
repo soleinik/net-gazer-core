@@ -1,14 +1,14 @@
 
 use std::any::Any;
 use std::sync::mpsc::{SyncSender, Receiver};
-use pnet::packet::ethernet::EthernetPacket;
 use pnet::datalink::NetworkInterface;
+use pnet::packet::ethernet::*;
 
 pub type CoreMessage = (u8, Vec<u8>);
 pub type CoreSender = SyncSender<CoreMessage>;
 pub type CoreReceiver = Receiver<CoreMessage>;
 
-pub trait Plugin: Any{ //} + Send + Sync{
+pub trait Plugin<'p>: Any{
 
     fn on_load(&mut self, iface:&NetworkInterface, tx:CoreSender);
     fn on_unload(&mut self);
@@ -16,7 +16,7 @@ pub trait Plugin: Any{ //} + Send + Sync{
     fn get_name(&self) -> &str;
     fn get_id(&self) -> u8;
 
-    fn process(&self, data:&'_ EthernetPacket);
+    fn process(&self, data:&'p EthernetPacket<'p>);
 }
 
 
