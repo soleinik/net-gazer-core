@@ -9,7 +9,7 @@ pub type CoreMessage = (u8, Vec<u8>);
 pub type CoreSender = SyncSender<CoreMessage>;
 pub type CoreReceiver = Receiver<CoreMessage>;
 
-pub trait Plugin<'p>: Any{
+pub trait Plugin: Any{
 
     fn on_load(&mut self, iface:&NetworkInterface, tx:CoreSender);
     fn on_unload(&mut self);
@@ -17,7 +17,7 @@ pub trait Plugin<'p>: Any{
     fn get_name(&self) -> &str;
     fn get_id(&self) -> u8;
 
-    fn process(&self, data:&'p dyn Packet);
+    fn process(&self, data:& dyn Packet);
 }
 
 
