@@ -17,7 +17,7 @@ pub trait Plugin: Any{
     fn get_name(&self) -> &str;
     fn get_id(&self) -> u8;
 
-    fn process(&self, data:& dyn Packet);
+    fn process<P: Packet>(&self, data: &P);
 }
 
 
