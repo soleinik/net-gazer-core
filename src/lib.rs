@@ -2,7 +2,7 @@
 use std::any::Any;
 use std::sync::mpsc::{SyncSender, Receiver};
 use pnet_datalink::NetworkInterface;
-use pnet_packet::Packet;
+use pnet_packet::ethernet::EthernetPacket;
 
 
 pub type CoreMessage = (u8, Vec<u8>);
@@ -17,7 +17,7 @@ pub trait Plugin: Any{
     fn get_name(&self) -> &str;
     fn get_id(&self) -> u8;
 
-    fn process<P: Packet>(&self, data: &P);
+    fn process(&self, data: &EthernetPacket);
 }
 
 
